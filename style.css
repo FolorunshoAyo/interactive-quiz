@@ -1,0 +1,135 @@
+*, 
+*::after,
+*::before{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root{ 
+    --color-primary: #7fa8a0;
+    --color-primary-light: #94b8b1;
+
+
+    --color-white: #fff; 
+    --color-black: #000;
+}
+
+body{
+    height: 100vh;
+    font-family: Comfortaa, sans-serif;
+    background-image: url(img/background-1.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover; 
+    background-color: lightblue;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.main{
+    width: 55%;
+    animation: scaleUp 1s linear;
+}
+
+.main h1{
+    font-size: 3.5rem;
+    text-align: center;
+    text-align: center;
+    display: inline-block;
+    background: linear-gradient(120deg,
+    var(--color-primary),  
+     var(--color-white));
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    font-weight: 700;
+}
+
+.main p{
+    font-weight: 500;
+    padding: 2rem 0;
+    color: var(--color-white);
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.btn-container{
+    text-align: center;
+    width: 100%;
+}
+
+.btn-container .start-btn, .begin-btn{
+    border-radius: 10px;
+    background-color: var(--color-primary);
+    border: none;
+    font-size: 1.5rem;
+    box-shadow: 0 1rem 1.5rem rgba(0, 0, 0, .4);
+    cursor: pointer;
+}
+
+.start-btn a{
+    padding: 1rem 2rem;
+    color:var(--color-white);
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    height: 100%;
+}
+
+.begin-btn{
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0;
+    color: var(--color-white);
+}
+
+@keyframes scaleUp {
+    0%{
+        transform: scale(0);
+    }
+    50%{
+        transform: scale(.5);
+    }
+    80%{
+        transform: scale(.8)
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+
+.customize-quiz-game{
+    padding: 1rem;
+}
+
+.form-group{
+    padding: 0.5rem 0;
+}
+
+.form-group label{
+    display: block;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    color: var(--color-white);
+}
+
+.form-group input, .form-group select{
+    display: block;
+    margin-top: 0.5rem;
+    width: 100%;
+    padding: 8px 4px;
+    border: 1px solid var(--color-primary-light);
+    border-radius: 5px;
+    font: inherit;
+}
+
+.form-group input:focus{
+    outline: none;
+    border: 5px solid var(--color-primary-light);
+}

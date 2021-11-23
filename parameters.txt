@@ -1,0 +1,18 @@
+General knowledge - 9
+Entertainment: books - 10
+Entertainment: film - 11
+Music - 12  
+Television - 14
+Video games - 15
+Science and nature - 17
+Computers - 18
+Mathematics - 19
+Sports - 21
+History - 23
+Politics - 24
+Celebrities - 26
+Animals - 27
+Vehicles - 28
+Comics - 29
+Gadgets - 30
+Cartoon and animation - 32 
