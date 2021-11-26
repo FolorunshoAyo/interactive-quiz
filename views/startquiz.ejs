@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;500;700&family=Lato:ital@0;1&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    <title>Quiz session in progress ...</title>
+
+</head>
+<body>
+    <div class="container">
+        <div class="main main-game">
+            <div class="properties">
+                <div class="category-container">
+                    <p>Category: <span class="category">Test</span></p>
+                </div>
+                <div class="difficulty-container">
+                    <p>Difficulty: <span class="difficulty">Test</span></p>
+                </div>
+                <div class="type-container">
+                    <p>Type: <span class="type">Test</span></p>
+                </div>
+            </div>
+            <div class="score-progress-board">
+                <div class="progress-bar-container">
+                    <div class="progress-fill">
+
+                    </div>
+                </div>
+                <div class="score-container">
+                    <h4>Score</h4>
+                    <span class="score">0</span>
+                </div>
+            </div>
+            <div class="question-answer-container">
+                <!-- <div class="question-block-1">
+                    <h2>What is the question?</h2>
+                    <div class="options">
+                        <div class="option option-1" data-answer="true">
+                            <div class="option-alphabet">
+                                A
+                            </div>
+                            <div class="option-content">
+                                Content 1
+                            </div>
+                        </div>
+                        <div class="option option-2" data-answer="false">
+                            <div class="option-alphabet">
+                                B
+                            </div>
+                            <div class="option-content">
+                                Content 2
+                            </div>
+                        </div>
+                        <div class="option option-3" data-answer="false">
+                            <div class="option-alphabet">
+                                C
+                            </div>
+                            <div class="option-content">
+                                Content 3
+                            </div>
+                        </div>
+                        <div class="option option-4" data-answer="false">
+                            <div class="option-alphabet">
+                                D
+                            </div>
+                            <div class="option-content">
+                                Content 3
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+            <!-- <div class="buttons-container">
+                <button class="btn-1">Prev</button>
+                <button class="btn-2">Next</button>
+            </div> -->
+        </div>
+    </div>
+    <script>
+        const userQuestions = ['<%=categories%>', '<%=correctAnswers%>', '<%=difficulties%>', '<%=incorrectAnswers%>', '<%=questions%>', '<%=types%>'];
+    </script>
+    <script src="js/game.js"></script>
+</body>
+</html>
