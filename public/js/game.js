@@ -23,7 +23,7 @@ function chunk(array, size) {
     return result
 }
 
-function htmlDecode(str){
+function htmlDecode(str) {
     let doc = new DOMParser().parseFromString(str, "text/html");
     return doc.documentElement.textContent;
 }
@@ -50,8 +50,8 @@ class QuizGame {
 
         this.userData.forEach((data, index) => {
             if (index === 3) {
-                userDatas.push(chunk(data.split(","), 3));
-            } else if (index === 4) {
+                userDatas.push(chunk(data.split(/,(?=\S)/), 3));
+            } else if (index === 1 ||index === 4) {
                 userDatas.push(data.split(/,(?=\S)/));
             } else {
                 userDatas.push(data.split(","));
@@ -78,27 +78,35 @@ class QuizGame {
     }
 
     displayQuestion(index) {
-        this.renderQuestions();
-        const userData = this.refinedUserData;
-        const questionInfo = {
-            currCategory: userData.categories[index],
-            correctAnswer: userData.correctAnswers[index],
-            currDifficulty: userData.difficulties[index],
-            incorrectAnswers: userData.incorrectAnswers[index],
-            question: userData.questions[index],
-            type: userData.types[index]
-        }
+        if (index + 1 > this.totalQuestions) {
+            this.endGame();
+        } else {
+            this.renderQuestions();
+
+            console.log("Game data is ", this.refinedUserData);
+            console.log("Total questions is ", this.totalQuestions);
+            console.log("Current question is [index]", index);
+
+            const userData = this.refinedUserData;
+            const questionInfo = {
+                currCategory: userData.categories[index],
+                correctAnswer: userData.correctAnswers[index],
+                currDifficulty: userData.difficulties[index],
+                incorrectAnswers: userData.incorrectAnswers[index],
+                question: userData.questions[index],
+                type: userData.types[index]
+            }
 
 
-        const providedOptions = [questionInfo.correctAnswer, ...questionInfo.incorrectAnswers];
-        shuffleArray(providedOptions);
+            const providedOptions = [questionInfo.correctAnswer, ...questionInfo.incorrectAnswers];
+            shuffleArray(providedOptions);
 
-        if (providedOptions.some(option => option === "True")) {
-            this.category.textContent = questionInfo.currCategory;
-            this.difficulty.textContent = questionInfo.currDifficulty;
-            this.type.textContent = questionInfo.type;
-            this.triviaContainer.insertAdjacentHTML(`beforeend`,
-                `
+            if (providedOptions.some(option => option === "True")) {
+                this.category.textContent = questionInfo.currCategory;
+                this.difficulty.textContent = questionInfo.currDifficulty;
+                this.type.textContent = questionInfo.type;
+                this.triviaContainer.insertAdjacentHTML(`beforeend`,
+                    `
                 <div class="question-block-${index}">
                     <h2>${htmlDecode(questionInfo.question)}</h2>
                     <div class="options">
@@ -121,13 +129,13 @@ class QuizGame {
                     </div>
                 </div>
             `)
-            this.addEventListeners(document.querySelectorAll(`.question-block-${index} .option`), questionInfo.correctAnswer, questionInfo.type);
-        } else {
-            this.category.textContent = questionInfo.currCategory;
-            this.difficulty.textContent = questionInfo.currDifficulty;
-            this.type.textContent = questionInfo.type;
-            this.triviaContainer.insertAdjacentHTML(`beforeend`,
-                `
+                this.addEventListeners(document.querySelectorAll(`.question-block-${index} .option-content`), questionInfo.correctAnswer, questionInfo.type);
+            } else {
+                this.category.textContent = questionInfo.currCategory;
+                this.difficulty.textContent = questionInfo.currDifficulty;
+                this.type.textContent = questionInfo.type;
+                this.triviaContainer.insertAdjacentHTML(`beforeend`,
+                    `
                 <div class="question-block-${index}">
                     <h2>${htmlDecode(questionInfo.question)}</h2>
                     <div class="options">
@@ -166,7 +174,8 @@ class QuizGame {
                     </div>
                 </div>
             `)
-            this.addEventListeners(document.querySelectorAll(`.question-block-${index} .option`), questionInfo.correctAnswer, questionInfo.type);
+                this.addEventListeners(document.querySelectorAll(`.question-block-${index} .option-content`), questionInfo.correctAnswer, questionInfo.type);
+            }
         }
     }
 
@@ -175,6 +184,10 @@ class QuizGame {
         let self = this;
         options.forEach(option => {
             option.addEventListener("click", (e) => {
+                debugger;
+                options.forEach(option => {
+                    option.removeEventListener();
+                });
                 setTimeout(() => {
                     if (e.target.innerText === correctAnswer) {
                         e.target.classList.add("correct");
@@ -196,16 +209,16 @@ class QuizGame {
 
                     setTimeout(() => {
                         self.currentQuestion++;
-                       self.moveToNext(self.currentQuestion);
+                        self.moveToNext(self.currentQuestion);
                     }, 2000)
                 }, 1000);
             });
         });
     }
 
-    showCorrectAns(options, correctAnswer){
+    showCorrectAns(options, correctAnswer) {
         options.forEach(option => {
-            if(option.innerText === correctAnswer){
+            if (option.innerText === correctAnswer) {
                 setTimeout(() => {
                     option.classList.add("correct");
                 }, 1000);
@@ -213,13 +226,22 @@ class QuizGame {
         });
     }
 
-    updateScore(amount){
+    updateScore(amount) {
         this.score += amount;
         document.querySelector(".score").textContent = this.score.toString();
     }
 
-    increaseProgress(){
-        this.root.setProperty("--progress-fill", `${(this.currentQuestion + 1 / this.totalQuestions * 100) }%`)
+    increaseProgress() {
+        this.root.setProperty("--progress-fill", `${((this.answeredCorrectly + this.failed) / this.totalQuestions) * 100}%`)
+    }
+
+    endGame(){
+        document.querySelector(".final-score").innerHTML = this.score.toString();
+        document.querySelector(".total-questions span").innerHTML = this.totalQuestions.toString();
+        document.querySelector(".marks .correct").innerHTML = this.showCorrectAns.toString();
+        document.querySelector(".marks .total").innerHTML = this.totalQuestions.toString();
+
+        document.querySelector(".modal-container").classList.remove("hide");
     }
 }
 
