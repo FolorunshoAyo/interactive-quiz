@@ -40,7 +40,6 @@ app.post("/customizeGame", (req, res) => {
         //     questions: results[4],
         //     types: results[5]
         // }
-        console.log(results);
         res.redirect("/startQuiz");
     }).catch((error) => {
         results = {connError: error};

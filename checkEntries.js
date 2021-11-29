@@ -5,24 +5,26 @@ function getUrl(userConfig){
     if ((userConfig.category === "") && (userConfig.difficulty) === "" && (userConfig.type === "")){
         url = `https://opentdb.com/api.php?amount=${amount}`;
     }
-    if ((userConfig.category !== "") && (userConfig.difficulty !== "") && (userConfig.type !== "")){
+    else if((userConfig.category !== "") && (userConfig.difficulty !== "") && (userConfig.type !== "")){
         url = `https://opentdb.com/api.php?amount=${amount}&category=${userConfig.category}&difficulty=${userConfig.difficulty}&type=${userConfig.type}`;
     }
-    if((userConfig.category !== "") && (userConfig.difficulty !== "")){
+    else if((userConfig.category !== "") && (userConfig.difficulty !== "")){
         url = `https://opentdb.com/api.php?amount=${amount}&category=${userConfig.category}&difficulty=${userConfig.difficulty}`;
     }
-    if((userConfig.category !== "") && (userConfig.type !== "")){
+    else if((userConfig.category !== "") && (userConfig.type !== "")){
         url = `https://opentdb.com/api.php?amount=${amount}&category=${userConfig.category}&difficulty=${userConfig.difficulty}`;
     }
-    if(userConfig.category !== ""){
+    else if(userConfig.category !== ""){
         url = `https://opentdb.com/api.php?amount=${amount}&category=${userConfig.category}`;
     }
-    if(userConfig.difficulty !== ""){
+    else if(userConfig.difficulty !== ""){
         url = `https://opentdb.com/api.php?amount=${amount}&difficulty=${userConfig.difficulty}`;
     }
-    if(userConfig.type !== ""){
+    else if(userConfig.type !== ""){
         url = `https://opentdb.com/api.php?amount=${amount}&type=${userConfig.type}`;
     }
+
+    console.log(url);
 
     return url;
 }

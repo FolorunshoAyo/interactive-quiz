@@ -228,10 +228,8 @@ input.error{
 
 .option{
     display: flex;
-    height: 40px;
     box-shadow: 0 1rem 1.5rem rgba(0,0,0,.5);
     transition: transform .5s;
-    cursor: pointer;
 }
 
 .option:hover{
@@ -256,12 +254,18 @@ input.error{
 .option-content{
     flex: 1;
     background-color: var(--color-white);
-
-    display: flex;
-    align-items: center;
-    font-size: 1.5rem;
     font-weight: 500;
-    padding-left: 20px
+}
+
+.option-btn{
+    display: block;
+    height: 100%;
+    width: 100%;
+    font-size: 1.5rem;
+    padding: 10px 1rem;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
 }
 
 /* PROPERTIES */
@@ -304,12 +308,17 @@ input.error{
     transform: translateY(10px);
 } */
 
-.option-content.correct{
+.option-btn:disabled{
+    color: var(--color-black);
+    background-color: transparent;
+}
+
+.option-btn.correct{
     background-color: var(--color-primary);
     color: white;
 }
 
-.option-content.wrong{
+.option-btn.wrong{
     background-color: rgb(155, 7, 7);
     color: white;
 }
