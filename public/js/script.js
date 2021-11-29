@@ -1,11 +1,25 @@
 (function () {
     const quizForm = document.getElementById("quiz-form");
     const button = document.querySelector(".begin-btn");
-    const alertBox = document.querySelector(".alert");
+    const closeAlertBtn = document.querySelector(".alert-close");
+    let alertInView;
+
+    closeAlertBtn.removeEventListener("click", closeAlert);
+    closeAlertBtn.addEventListener("click", closeAlert);
+
+    if(closeAlertBtn.parentElement.classList.contains("alert-warning")){
+        alertInView = document.querySelector(".alert-warning");
+    }else{
+        alertInView = document.querySelector(".alert-danger");
+    }
 
     if(navigator.onLine){
         button.disabled = false;
-        alertBox.classList.add("close");
+
+        if(alertInView.classList.contains("alert-warning")){
+            alertInView.classList.add("close");
+        }
+
         quizForm.addEventListener("submit", (e) => {
             const inputEl = document.getElementById("amount");
     
@@ -18,7 +32,10 @@
         });
     }else{
         button.disabled = true;
-        alertBox.classList.remove("close");
+    }
+
+    function closeAlert (e){
+        e.target.parentElement.classList.add("close");
     }
 }());
 

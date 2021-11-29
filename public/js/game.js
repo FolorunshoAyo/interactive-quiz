@@ -47,8 +47,8 @@ class QuizGame {
 
     renderQuestions() {
         const userDatas = [];
-
         this.userData.forEach((data, index) => {
+            data.replace(/,\s/, "");
             if (index === 3) {
                 userDatas.push(chunk(data.split(/,(?=\S)/), 3));
             } else if (index === 1 || index === 4) {
@@ -84,10 +84,6 @@ class QuizGame {
     displayQuestion(index) {
         this.renderQuestions();
 
-        console.log("Game data is ", this.refinedUserData);
-        console.log("Total questions is ", this.totalQuestions);
-        console.log("Current question is [index]", index);
-
         const userData = this.refinedUserData;
         const questionInfo = {
             currCategory: userData.categories[index],
@@ -108,7 +104,7 @@ class QuizGame {
             this.type.textContent = questionInfo.type;
             this.triviaContainer.insertAdjacentHTML(`beforeend`,
                 `
-                <div class="question-block-${index}">
+                <div class="question-block question-block-${index}">
                     <h2>${htmlDecode(questionInfo.question)}</h2>
                     <div class="options">
                         <div class="option option-1" data-answer="true">
@@ -137,7 +133,7 @@ class QuizGame {
             this.type.textContent = questionInfo.type;
             this.triviaContainer.insertAdjacentHTML(`beforeend`,
                 `
-                <div class="question-block-${index}">
+                <div class="question-block question-block-${index}">
                     <h2>${htmlDecode(questionInfo.question)}</h2>
                     <div class="options">
                         <div class="option option-1" data-answer="true">

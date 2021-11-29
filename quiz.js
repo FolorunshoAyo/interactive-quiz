@@ -18,7 +18,7 @@ app.get("/", indexRouter);
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.get("/customizeGame", (req, res) => {
-    res.render("customizegame", {});
+    res.render("customizegame", {error: ""});
 });
 
 app.post("/customizeGame", (req, res) => {
@@ -40,7 +40,11 @@ app.post("/customizeGame", (req, res) => {
         //     questions: results[4],
         //     types: results[5]
         // }
-        res.redirect("/startQuiz");
+        if(results[4].length === 0){
+            res.render("customizegame", {error: "There are no results for the selected category, try reducing the number of questions or choose another category"});
+        }else{
+            res.redirect("/startQuiz");
+        }
     }).catch((error) => {
         results = {connError: error};
         res.redirect("/customizeGame")

@@ -14,9 +14,17 @@
     <title>Interactive Quiz Game: Customize game</title>
 </head>
 <body>
-    <div class="alert alert-warning">
-        <p class="alert-text">Connection Error</p>
-    </div>
+   <% if(error){ %>
+        <div class="alert alert-danger">
+            <span class="alert-close">X</span>
+            <p class="alert-text"><%=error%></p>
+        </div>
+   <% }else{ %>
+        <div class="alert alert-warning">
+            <span class="alert-close">X</span>
+            <p class="alert-text">Connection Error</p>
+        </div>
+   <% } %>
     <div class="container">
         <div class="main">
             <div class="main-heading">

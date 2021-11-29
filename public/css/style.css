@@ -217,6 +217,10 @@ input.error{
     font-family: Lato, sans-serif;
 }
 
+.question-block{
+    transition: all 3s ease-out;
+}
+
 .question-answer-container h2{
     font-size: 2rem;
     font-weight: 900;
@@ -327,13 +331,32 @@ input.error{
     position: absolute;
     top: 30px;
     left: 0;
-    width: 20%;
+    width: 25%;
     border-radius: 10px;
     padding: 1rem;
-    font-size: 1.5rem;
-    background-color: rgba(127, 168, 160, .7);
+    font-size: 1.5rem; 
     text-align: center; 
     color: var(--color-white);
+}
+
+.alert-warning{
+    background-color: rgba(127, 168, 160, .7);
+}
+
+.alert-danger{
+    background-color: rgb(155, 7, 7);
+}
+
+.alert-text{
+    clear: right;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.alert-close{
+    float: right;
+    font-size: 0.8rem;
+    cursor: pointer;
 }
 
 .modal-container{

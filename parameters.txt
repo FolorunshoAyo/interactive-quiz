@@ -16,32 +16,3 @@ Vehicles - 28
 Comics - 29
 Gadgets - 30
 Cartoon and animation - 32 
-
-
-<h2>What is the question?</h2>
-                <div class="options">
-                    <div class="option option-1" data-answer="true">
-                        <div class="option-alphabet">
-                            A
-                        </div>
-                        <div class="option-content">
-                            Content 1
-                        </div>
-                    </div>
-                    <div class="option option-2" data-answer="false">
-                        <div class="option-alphabet">
-                            B
-                        </div>
-                        <div class="option-content">
-                            Content 2
-                        </div>
-                    </div>
-                    <div class="option option-3" data-answer="false">
-                        <div class="option-alphabet">
-                            C
-                        </div>
-                        <div class="option-content">
-                            Content 3
-                        </div>
-                    </div>
-                </div>
